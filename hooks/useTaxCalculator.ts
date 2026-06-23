@@ -14,6 +14,7 @@ const calculatorSchema = z.object({
     .max(10_000_000, "Income must be under $10,000,000"),
   platform: z.enum(["none", "upwork", "fiverr"]),
   state: z.enum(["CA", "NY", "IL", "TX", "FL"]),
+  filingStatus: z.enum(["single", "married_filing_jointly"]),
   includeSelfEmploymentTax: z.boolean(),
 });
 
@@ -23,6 +24,7 @@ const defaultValues: CalculatorFormValues = {
   grossIncome: 75000,
   platform: "upwork",
   state: "CA",
+  filingStatus: "single",
   includeSelfEmploymentTax: true,
 };
 
@@ -40,6 +42,7 @@ export function useTaxCalculator() {
       grossIncome: watchedValues.grossIncome ?? 0,
       platform: watchedValues.platform ?? "none",
       state: watchedValues.state ?? "CA",
+      filingStatus: watchedValues.filingStatus ?? "single",
       includeSelfEmploymentTax:
         watchedValues.includeSelfEmploymentTax ?? true,
     };
@@ -48,6 +51,7 @@ export function useTaxCalculator() {
     watchedValues.grossIncome,
     watchedValues.platform,
     watchedValues.state,
+    watchedValues.filingStatus,
     watchedValues.includeSelfEmploymentTax,
   ]);
 

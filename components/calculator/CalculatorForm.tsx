@@ -1,6 +1,6 @@
 "use client";
 
-import { PLATFORM_OPTIONS, STATE_OPTIONS } from "@/lib/constants";
+import { FILING_STATUS_OPTIONS, PLATFORM_OPTIONS, STATE_OPTIONS } from "@/lib/constants";
 import type { CalculatorFormValues } from "@/hooks/useTaxCalculator";
 import type { UseFormReturn } from "react-hook-form";
 
@@ -55,6 +55,26 @@ export function CalculatorForm({ form }: CalculatorFormProps) {
               {errors.grossIncome.message}
             </p>
           )}
+        </div>
+
+        <div>
+          <label htmlFor="filingStatus" className="mb-2 block text-sm font-medium">
+            Filing Status
+          </label>
+          <select
+            id="filingStatus"
+            className="w-full rounded-lg border border-border bg-card px-4 py-3 text-base outline-none ring-accent focus:ring-2"
+            {...register("filingStatus")}
+          >
+            {FILING_STATUS_OPTIONS.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <p className="mt-1 text-xs text-muted">
+            Affects federal brackets, standard deduction, and state tax thresholds
+          </p>
         </div>
 
         <div>

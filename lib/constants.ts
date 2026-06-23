@@ -1,5 +1,5 @@
 import taxData from "./taxData.json";
-import type { PlatformKey, StateCode, TaxData } from "@/types/tax";
+import type { FilingStatus, PlatformKey, StateCode, TaxData } from "@/types/tax";
 
 export const TAX_DATA = taxData as TaxData;
 
@@ -17,6 +17,13 @@ export const PLATFORM_OPTIONS: { value: PlatformKey; label: string }[] = (
 ).map(([key, platform]) => ({
   value: key,
   label: platform.name,
+}));
+
+export const FILING_STATUS_OPTIONS: { value: FilingStatus; label: string }[] = (
+  Object.entries(TAX_DATA.federal) as [FilingStatus, { label: string }][]
+).map(([value, config]) => ({
+  value,
+  label: config.label,
 }));
 
 export const CHART_COLORS = {

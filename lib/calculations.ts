@@ -2,8 +2,8 @@ import type {
   CalculatorInput,
   CalculatorResult,
   ChartDataPoint,
-  FederalTaxConfig,
-  ProgressiveStateTax,
+  FederalFilingStatusConfig,
+  FilingStatus,
   SelfEmploymentConfig,
   StateTaxConfig,
   TaxBreakdownItem,
@@ -36,7 +36,7 @@ function calculateProgressiveTax(
 
 function calculateFederalTax(
   income: number,
-  federal: FederalTaxConfig,
+  federal: FederalFilingStatusConfig,
   seDeduction: number
 ): number {
   const taxableIncome = Math.max(
@@ -48,24 +48,25 @@ function calculateFederalTax(
 
 function calculateStateTax(
   income: number,
-  stateConfig: StateTaxConfig
+  stateConfig: StateTaxConfig,
+  filingStatus: FilingStatus
 ): number {
   switch (stateConfig.type) {
     case "progressive": {
+      const statusConfig = stateConfig.filingStatuses[filingStatus];
       const taxableIncome = Math.max(
         0,
-        income - stateConfig.standardDeduction
+        income - statusConfig.standardDeduction
       );
       return calculateProgressiveTax(
         taxableIncome,
-        stateConfig.brackets
+        statusConfig.brackets
       );
     }
     case "flat": {
-      const taxableIncome = Math.max(
-        0,
-        income - stateConfig.personalExemption
-      );
+      const exemption =
+        stateConfig.filingStatuses[filingStatus].personalExemption;
+      const taxableIncome = Math.max(0, income - exemption);
       return taxableIncome * stateConfig.rate;
     }
     case "none":
@@ -119,9 +120,11 @@ function buildChartData(
 export function calculateFreelancerTax(
   input: CalculatorInput
 ): CalculatorResult {
-  const { grossIncome, platform, state, includeSelfEmploymentTax } = input;
+  const { grossIncome, platform, state, filingStatus, includeSelfEmploymentTax } =
+    input;
   const platformConfig = TAX_DATA.platforms[platform];
   const stateConfig = TAX_DATA.states[state];
+  const federalConfig = TAX_DATA.federal[filingStatus];
 
   const platformFee = grossIncome * platformConfig.feeRate;
   const incomeAfterPlatformFee = grossIncome - platformFee;
@@ -135,11 +138,15 @@ export function calculateFreelancerTax(
 
   const federalTax = calculateFederalTax(
     incomeAfterPlatformFee,
-    TAX_DATA.federal,
+    federalConfig,
     seResult.deductible
   );
 
-  const stateTax = calculateStateTax(incomeAfterPlatformFee, stateConfig);
+  const stateTax = calculateStateTax(
+    incomeAfterPlatformFee,
+    stateConfig,
+    filingStatus
+  );
 
   const totalTax = federalTax + stateTax + seResult.total;
   const netIncome = incomeAfterPlatformFee - totalTax;
@@ -154,7 +161,10 @@ export function calculateFreelancerTax(
       rate: platformConfig.feeRate,
     },
     { label: "Income After Platform Fee", amount: incomeAfterPlatformFee },
-    { label: "Federal Income Tax", amount: federalTax },
+    {
+      label: `Federal Income Tax (${federalConfig.label})`,
+      amount: federalTax,
+    },
     {
       label: `${stateConfig.name} State Tax`,
       amount: stateTax,
@@ -193,6 +203,7 @@ export function calculateFreelancerTax(
     totalTax,
     netIncome,
     effectiveTaxRate,
+    filingStatusLabel: federalConfig.label,
     breakdown,
     chartData,
   };
