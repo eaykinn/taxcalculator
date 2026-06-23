@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { CalculatorSchema } from "@/components/seo/CalculatorSchema";
 import { FaqSchema } from "@/components/seo/FaqSchema";
+import { SITE_URL } from "@/lib/constants";
 import "./globals.css";
 
 const inter = Inter({
@@ -13,7 +14,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://freelancertaxcalculator.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Freelancer Tax & Fee Calculator 2026 | US Net Income Estimator",
     template: "%s | Freelancer Tax Calculator",

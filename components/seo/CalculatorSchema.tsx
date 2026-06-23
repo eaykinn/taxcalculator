@@ -1,4 +1,4 @@
-import { TAX_YEAR } from "@/lib/constants";
+import { SITE_URL, TAX_YEAR } from "@/lib/constants";
 
 export function CalculatorSchema() {
   const schema = {
@@ -27,7 +27,7 @@ export function CalculatorSchema() {
       "@type": "SolveMathAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://freelancertaxcalculator.com/",
+        urlTemplate: `${SITE_URL}/`,
         actionPlatform: [
           "https://schema.org/DesktopWebPlatform",
           "https://schema.org/MobileWebPlatform",
