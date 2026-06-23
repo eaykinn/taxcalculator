@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #fafafa;
+  --foreground: #0a0a0a;
+  --muted: #737373;
+  --border: #e5e5e5;
+  --card: #ffffff;
+  --accent: #2563eb;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --muted: #a3a3a3;
+  --border: #262626;
+  --card: #171717;
+  --accent: #3b82f6;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer components {
+  .ad-slot-leaderboard {
+    @apply mx-auto flex min-h-[90px] w-full max-w-[728px] items-center justify-center rounded-lg border border-dashed border-border bg-card text-sm text-muted;
+  }
+
+  .ad-slot-rectangle {
+    @apply flex min-h-[250px] w-full max-w-[300px] items-center justify-center rounded-lg border border-dashed border-border bg-card text-sm text-muted;
+  }
+
+  .ad-slot-sidebar {
+    @apply flex min-h-[600px] w-full max-w-[160px] items-center justify-center rounded-lg border border-dashed border-border bg-card text-sm text-muted;
+  }
+}

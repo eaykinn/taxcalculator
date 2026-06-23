@@ -1,0 +1,77 @@
+{
+  "year": 2026,
+  "currency": "USD",
+  "federal": {
+    "filingStatus": "single",
+    "standardDeduction": 15000,
+    "brackets": [
+      { "min": 0, "max": 11925, "rate": 0.1 },
+      { "min": 11925, "max": 48475, "rate": 0.12 },
+      { "min": 48475, "max": 103350, "rate": 0.22 },
+      { "min": 103350, "max": 197300, "rate": 0.24 },
+      { "min": 197300, "max": 250525, "rate": 0.32 },
+      { "min": 250525, "max": 626350, "rate": 0.35 },
+      { "min": 626350, "max": null, "rate": 0.37 }
+    ]
+  },
+  "selfEmployment": {
+    "rate": 0.153,
+    "deductiblePortion": 0.5,
+    "socialSecurityWageBase": 176100
+  },
+  "platforms": {
+    "none": { "name": "None", "feeRate": 0 },
+    "upwork": { "name": "Upwork", "feeRate": 0.1, "description": "Estimated 10% service fee (varies by contract tier)" },
+    "fiverr": { "name": "Fiverr", "feeRate": 0.2, "description": "20% platform commission on completed orders" }
+  },
+  "states": {
+    "CA": {
+      "name": "California",
+      "type": "progressive",
+      "standardDeduction": 5540,
+      "brackets": [
+        { "min": 0, "max": 10412, "rate": 0.01 },
+        { "min": 10412, "max": 24684, "rate": 0.02 },
+        { "min": 24684, "max": 38959, "rate": 0.04 },
+        { "min": 38959, "max": 54081, "rate": 0.06 },
+        { "min": 54081, "max": 68350, "rate": 0.08 },
+        { "min": 68350, "max": 349137, "rate": 0.093 },
+        { "min": 349137, "max": 418961, "rate": 0.103 },
+        { "min": 418961, "max": 698271, "rate": 0.113 },
+        { "min": 698271, "max": null, "rate": 0.123 }
+      ]
+    },
+    "NY": {
+      "name": "New York",
+      "type": "progressive",
+      "standardDeduction": 8000,
+      "brackets": [
+        { "min": 0, "max": 8500, "rate": 0.04 },
+        { "min": 8500, "max": 11700, "rate": 0.045 },
+        { "min": 11700, "max": 13900, "rate": 0.0525 },
+        { "min": 13900, "max": 80650, "rate": 0.055 },
+        { "min": 80650, "max": 215400, "rate": 0.06 },
+        { "min": 215400, "max": 1077550, "rate": 0.0685 },
+        { "min": 1077550, "max": 5000000, "rate": 0.0965 },
+        { "min": 5000000, "max": 25000000, "rate": 0.103 },
+        { "min": 25000000, "max": null, "rate": 0.109 }
+      ]
+    },
+    "IL": {
+      "name": "Illinois",
+      "type": "flat",
+      "rate": 0.0495,
+      "personalExemption": 2775
+    },
+    "TX": {
+      "name": "Texas",
+      "type": "none",
+      "rate": 0
+    },
+    "FL": {
+      "name": "Florida",
+      "type": "none",
+      "rate": 0
+    }
+  }
+}
