@@ -4,6 +4,10 @@ import type { FilingStatus, PlatformKey, StateCode, TaxData } from "@/types/tax"
 export const SITE_URL = "https://taxcalfreelancer.com";
 export const SITE_EMAIL = "eaykin61@gmail.com";
 
+/** Google AdSense publisher ID (pub-7338450320392754) */
+export const ADSENSE_PUBLISHER_ID = "7338450320392754";
+export const ADSENSE_CLIENT_ID = `ca-pub-${ADSENSE_PUBLISHER_ID}`;
+
 export const TAX_DATA = taxData as TaxData;
 
 export const TAX_YEAR = TAX_DATA.year;

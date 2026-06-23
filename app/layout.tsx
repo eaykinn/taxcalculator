@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { CalculatorSchema } from "@/components/seo/CalculatorSchema";
 import { FaqSchema } from "@/components/seo/FaqSchema";
+import { AdSenseScript } from "@/components/ads/AdSenseScript";
 import { SITE_URL } from "@/lib/constants";
 import "./globals.css";
 
@@ -63,6 +64,7 @@ export default function RootLayout({
       <head>
         <CalculatorSchema />
         <FaqSchema />
+        <AdSenseScript />
       </head>
       <body className={inter.className}>
         <ThemeProvider>
