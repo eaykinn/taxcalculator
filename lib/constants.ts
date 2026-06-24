@@ -1,7 +1,7 @@
 import taxData from "./taxData.json";
 import type { FilingStatus, PlatformKey, StateCode, TaxData } from "@/types/tax";
 
-export const SITE_URL = "https://taxcalfreelancer.com";
+export const SITE_URL = "https://www.taxcalfreelancer.com";
 export const SITE_EMAIL = "eaykin61@gmail.com";
 
 /** Google Search Console — meta tag content / DNS TXT suffix token */

@@ -5,8 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { CalculatorSchema } from "@/components/seo/CalculatorSchema";
 import { FaqSchema } from "@/components/seo/FaqSchema";
-import { AdSenseScript } from "@/components/ads/AdSenseScript";
-import { GOOGLE_SITE_VERIFICATION, SITE_URL } from "@/lib/constants";
+import { ADSENSE_CLIENT_ID, GOOGLE_SITE_VERIFICATION, SITE_URL } from "@/lib/constants";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
@@ -68,7 +67,11 @@ export default function RootLayout({
       <head>
         <CalculatorSchema />
         <FaqSchema />
-        <AdSenseScript />
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`}
+          crossOrigin="anonymous"
+        />
       </head>
       <body className={inter.className}>
         <ThemeProvider>
