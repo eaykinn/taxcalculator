@@ -6,7 +6,8 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { CalculatorSchema } from "@/components/seo/CalculatorSchema";
 import { FaqSchema } from "@/components/seo/FaqSchema";
 import { AdSenseScript } from "@/components/ads/AdSenseScript";
-import { SITE_URL } from "@/lib/constants";
+import { GOOGLE_SITE_VERIFICATION, SITE_URL } from "@/lib/constants";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const inter = Inter({
@@ -52,6 +53,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  verification: {
+    google: GOOGLE_SITE_VERIFICATION,
+  },
 };
 
 export default function RootLayout({
@@ -74,6 +78,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
